@@ -28,6 +28,12 @@ class Game {
     }
   }
 
+  end(){
+    console.log("gameover now")
+
+
+  }
+
   play(){
     form.hide();
     textSize(30);
@@ -36,9 +42,16 @@ class Game {
 
     if(allPlayers !== undefined){
       var display_position = 130;
-      var x=0; 
+      var x=200; 
       var y=0;
       var index=0;
+
+      if(player.distance>=5650){
+        gameState=2;
+
+      }
+
+      image( trackL, 0, -displayHeight*4, displayWidth, displayHeight*5); 
 
       for(var plr in allPlayers){
         if (plr === "player" + player.index)
@@ -71,9 +84,11 @@ class Game {
       }
     }
 
-    if(keyIsDown(UP_ARROW) && player.index !== null){
+    if(keyIsDown(UP_ARROW) && player.index !== null && gameState !== 2){
       player.distance +=50
       player.update();
+
+      console.log(player.distance)
     }
   }
 }
